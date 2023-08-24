@@ -1,8 +1,8 @@
 package org.example.products;
 
-public abstract class Product {
-    private String name;
-    private int price;
+public abstract class Product implements Comparable<Product> {
+    private final String name;
+    private final int price;
 
     public Product(String name, int price) {
         this.name = name;
@@ -15,5 +15,10 @@ public abstract class Product {
 
     public String getName() {
         return name;
+    }
+
+    @Override
+    public int compareTo(Product other) {
+        return Integer.compare(this.getPrice(), other.getPrice());
     }
 }

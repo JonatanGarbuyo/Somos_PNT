@@ -3,11 +3,10 @@ package org.example;
 import org.example.products.Product;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 
 public class Cart {
 
-    private ArrayList<Product> productList;
+    private final ArrayList<Product> productList;
 
     public Cart() {
         productList = new ArrayList<>();
@@ -18,16 +17,21 @@ public class Cart {
     }
 
     public String getMostExpensiveProduct() {
-        return productList.stream()
-                .max(Comparator.comparingInt(Product::getPrice))
-                .orElse(null).getName();
-    };
+        Product mostExpensive = productList.stream()
+                .max(Product::compareTo)
+                .orElse(null);
+
+        return mostExpensive != null ? mostExpensive.getName() : "No products in the cart";
+    }
 
     public String getLeastExpensiveProduct() {
-        return productList.stream()
-                .min(Comparator.comparingInt(Product::getPrice))
-                .orElse(null).getName();
-    };
+        Product leastExpensive = productList.stream()
+                .min(Product::compareTo)
+                .orElse(null);
+
+        return leastExpensive != null ? leastExpensive.getName() : "No products in the cart";
+
+    }
 
     public void showProducts() {
         for (Product product : productList) {
