@@ -13,6 +13,6 @@ public class Main {
         cart.addProduct(new HairProduct("Shampoo Sedal", 19, "500ml"));
         cart.addProduct(new Fruit("Frutillas", 64, "kilo"));
 
-        cart.showProducts();
+        System.out.println(cart);
     }
 }

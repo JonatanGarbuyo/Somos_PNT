@@ -12,6 +12,10 @@ public class Cart {
         productList = new ArrayList<>();
     }
 
+    public ArrayList<Product> getProductList() {
+        return productList;
+    }
+
     public void addProduct(Product product) {
         productList.add(product);
     }
@@ -33,12 +37,14 @@ public class Cart {
 
     }
 
-    public void showProducts() {
-        for (Product product : productList) {
-            System.out.println(product);
-        }
-        System.out.println("=============================");
-        System.out.println("Producto más caro: " + this.getMostExpensiveProduct());
-        System.out.println("Producto más barato: " + this.getLeastExpensiveProduct());
+    @Override
+    public String toString(){
+        StringBuilder message = new StringBuilder();
+        for (Product product : productList) message.append(product).append("\n");
+        message.append("=============================\n");
+        message.append("Producto más caro: ").append(this.getMostExpensiveProduct()).append("\n");
+        message.append("Producto más barato: ").append(this.getLeastExpensiveProduct());
+        return message.toString();
     }
+
 }
