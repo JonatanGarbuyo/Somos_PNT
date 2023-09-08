@@ -2,7 +2,7 @@ package org.example;
 
 import org.example.products.Product;
 
-import java.util.ArrayList;
+import java.util.*;
 
 public class Cart {
 
@@ -29,12 +29,12 @@ public class Cart {
     }
 
     public String getLeastExpensiveProduct() {
-        Product leastExpensive = productList.stream()
-                .min(Product::compareTo)
-                .orElse(null);
+        return productList.isEmpty() ? "No products in the cart" : Collections.min(productList).getName();
 
-        return leastExpensive != null ? leastExpensive.getName() : "No products in the cart";
-
+//        return productList.stream()
+//                .min(Comparator.comparingInt(Product::getPrice))
+//                .map(Product::getName)
+//                .orElse("No products in the cart");
     }
 
     @Override
